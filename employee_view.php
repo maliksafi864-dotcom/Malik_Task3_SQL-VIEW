@@ -62,16 +62,16 @@
     <h1>HR Employee Details Report</h1>
     
     <?php
-    // Database connection parameters
+    
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "index_db";
     
-    // Create connection
+   
     $conn = new mysqli($servername, $username, $password, $dbname);
     
-    // Check connection
+    
     if ($conn->connect_error) {
         echo "<div class='error'>";
         echo "Connection failed: " . $conn->connect_error;
@@ -79,22 +79,22 @@
     } else {
         echo "<div class='success'> Database connected!</div>";
         
-        // Query the view
+    
         $sql = "SELECT * FROM employee_details_view";
         $result = $conn->query($sql);
         
         if ($result->num_rows > 0) {
-            // Display table
+            
             echo "<table>";
             
-            // Table headers
+            
             echo "<tr>";
             while ($field = $result->fetch_field()) {
                 echo "<th>" . $field->name . "</th>";
             }
             echo "</tr>";
             
-            // Table data
+          
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 foreach ($row as $key => $value) {
@@ -109,16 +109,16 @@
             
             echo "</table>";
             
-            // Show row count
+            
             echo "<p style='margin-top: 20px; font-weight: bold;'>Total records: " . $result->num_rows . "</p>";
             
         } else {
             echo "<div class='error'>No records found in the view.</div>";
         }
-        
-        // Close connection
+      
         $conn->close();
     }
     ?>
 </body>
+
 </html>
